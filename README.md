@@ -11,7 +11,7 @@ Install the app by pushing it to your Cloud Foundry and binding with the Pivotal
 Example:
 
      $ git clone https://github.com/swisscom/cf-redis-example-app.git
-     $ cd redis-example-app
+     $ cd cf-redis-example-app
      $ cf create-service redis small example-redis
      $ cf bind-service redis-example-app example-redis     
      $ cf push
