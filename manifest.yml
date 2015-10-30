@@ -4,3 +4,6 @@ applications:
   memory: 256M
   instances: 1
   path: .
+  host: redis-example-${random-word}
+  services:
+  - redis-example  
