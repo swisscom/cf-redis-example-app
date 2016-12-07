@@ -1,9 +1,10 @@
 ---
 applications:
-- name: redis-example-app
+- name: redisent-example-app
   memory: 256M
   instances: 1
   path: .
-  host: redis-example-${random-word}
+  host: redisent-example-${random-word}
   services:
-  - redis-example  
+  - redisent-example  
+

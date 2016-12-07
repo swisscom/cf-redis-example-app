@@ -9,7 +9,7 @@ You must bind a Redis service instance to this application.
 
 You can run the following commands to create an instance and bind to it:
 
-  $ cf create-service redis small redis-instance
+  $ cf create-service redisent large redis-instance
   $ cf bind-service <app-name> redis-instance})
   end
 end
@@ -50,14 +50,22 @@ end
 
 def redis_credentials
   if ENV['VCAP_SERVICES']
-    redis_credentials = CF::App::Credentials.find_by_service_label('redis')
+    CF::App::Credentials.find_by_service_label('redisent')
   end
 end
 
 def redis_client
   @client ||= Redis.new(
-    host: redis_credentials.fetch('host'),
-    port: redis_credentials.fetch('port'),
+    url: redis_credentials.fetch('master'),
+    # this library strictly requires sentinels to be a symbol
+    # https://github.com/redis/redis-rb/issues/570
+    :sentinels => redis_credentials.fetch('sentinels').map do |sentinel|
+    {
+      :host => sentinel.fetch('host'),
+      :port => sentinel.fetch('port')
+    }
+    end,
+    role: :master,
     password: redis_credentials.fetch('password')
   )
 end
