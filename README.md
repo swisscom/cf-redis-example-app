@@ -12,7 +12,7 @@ Example:
 
      $ git clone https://github.com/swisscom/cf-redis-example-app.git
      $ cd cf-redis-example-app
-     $ cf create-service redis small redis-example
+     $ cf create-service redis-2 small redis-example
      $ cf push
 
 ### Endpoints
