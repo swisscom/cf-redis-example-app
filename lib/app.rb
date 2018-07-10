@@ -9,7 +9,7 @@ You must bind a Redis service instance to this application.
 
 You can run the following commands to create an instance and bind to it:
 
-  $ cf create-service redis small redis-instance
+  $ cf create-service redis-2 small redis-instance
   $ cf bind-service <app-name> redis-instance})
   end
 end
